@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<title>WikiSearch</title>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Pacifico" rel="stylesheet">
+  <link rel="icon" type="image/png" href="sam.png">
+  <style>
+  .form-group{
+    margin-top: 1%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
+  img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    height: 3vh;
+}
+  #Hello{
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top:1%;
+    padding: 1%;
+    border-radius: 0px 15px 50px 30px;
+  }
+#Hello:nth-child(odd) {
+    background: #B9BCBF;
+    color: black;
+}
+#Hello:nth-child(even) {
+    background: #272727;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+  <div id = "results">
+
+    </div>
+    <script>
+
+      function apiCall(){
+          $.getJSON("https://gist.githubusercontent.com/djokester/b4302fba3092f30d7a93124c467faa50/raw/fc2ea0c3ccccc289e22c5fd0d234729b27ecdaa7/output.json", function(data){
+          console.log(data[0]);
+          for (var i = 0; i < data.length; i++){
+            console.log(data[i]["head"]);
+            $('#results').append("<div id = 'Hello'><a href=" + data[i]["link"] +
+                           "' target='_blank'><h3><b>" + data[i]["head"] + "</b></h3></a>" + data[i]["body"] + "</p></div>");
+          }
+        });
+      }
+      window.onload = function() {apiCall();};
+
+    </script>
+  </body>
+
+  </html>
